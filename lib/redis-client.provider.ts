@@ -5,7 +5,7 @@ import { Provider } from '@nestjs/common';
 import { REDIS_CLIENT, REDIS_MODULE_OPTIONS } from './redis.constants';
 import { RedisModuleAsyncOptions, RedisModuleOptions } from './redis.interface';
 
-export class RedisClientError extends Error {}
+export class RedisClientError extends Error { }
 export interface RedisClient {
   defaultKey: string;
   clients: Map<string, Redis.Redis>;
@@ -53,7 +53,7 @@ export const createClient = (): Provider => ({
   inject: [REDIS_MODULE_OPTIONS],
 });
 
-export const createAsyncClientOptions = (options: RedisModuleAsyncOptions) => ({
+export const createAsyncClientOptions = (options: RedisModuleAsyncOptions): Provider => ({
   provide: REDIS_MODULE_OPTIONS,
   useFactory: options.useFactory,
   inject: options.inject,
